@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Union
 
 from PIL import Image
 
@@ -18,7 +19,7 @@ class BaseAdapter(ABC):
         query: str,
         image: Image.Image,
         task_type: str,
-    ) -> str:
+    ) -> Union[str, tuple]:
         pass
 
     def __call__(
@@ -26,5 +27,5 @@ class BaseAdapter(ABC):
         query: str,
         image: Image.Image,
         task_type: str,
-    ) -> str:
+    ) -> Union[str, tuple]:
         return self.generate(query, image, task_type)
