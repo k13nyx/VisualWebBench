@@ -1,0 +1,134 @@
+# Candidate models for the VisualWebBench score-vs-cost study.
+# Every model is called through OpenRouter (one API, one key).
+#
+# Model IDs and prices were checked against OpenRouter's live model list on
+# 2026-10-30. Prices are USD per 1M tokens for the PINNED HOST below.
+# They are only a fallback: when OpenRouter returns the billed cost (it normally
+# does), run_api2.py records and uses that instead.
+
+defaults:
+  base_url: https://openrouter.ai/api/v1
+  api_key_env: OPENROUTER_API_KEY
+
+models:
+  # ---------------- Open-weight (all via OpenRouter) ----------------
+  deepseek-v4.1-flash:
+    name: DeepSeek V4.1 Flash
+    model_id: deepseek/deepseek-v4.1-flash
+    open_weights: true
+    host: inference-net/fp8
+    price_in: 0.174
+    price_out: 0.586
+
+  glm-5.3:
+    name: GLM 5.3
+    model_id: z-ai/glm-5.3
+    open_weights: true
+    host: z-ai/fp8
+    price_in: 1.40
+    price_out: 4.40
+
+  glm-5.3-flash:
+    name: GLM 5.3 Flash
+    model_id: z-ai/glm-5.3-flash
+    open_weights: true
+    host: z-ai/fp8
+    price_in: 0.15
+    price_out: 0.50
+
+  mimo-v2.6-pro:
+    name: MiMo-V2.6-Pro
+    model_id: xiaomi/mimo-v2.6-pro
+    open_weights: true
+    host: xiaomi/fp8
+    price_in: 0.435
+    price_out: 0.87
+
+  mimo-v2.6-flash:
+    name: MiMo-V2.6-Flash
+    model_id: xiaomi/mimo-v2.6-flash
+    open_weights: true
+    host: xiaomi/fp8
+    price_in: 0.14
+    price_out: 0.28
+
+  qwen3.8-flash:
+    name: Qwen3.8 Flash
+    model_id: qwen/qwen3.8-flash
+    open_weights: true
+    host: alibaba
+    price_in: 0.15
+    price_out: 0.47
+  
+  qwen3.7-flash:
+    name: Qwen3.7 Flash
+    model_id: qwen/qwen3.7-flash
+    open_weights: true
+    host: alibaba
+    price_in: 0.03
+    price_out: 0.13
+
+  minimax-m3.1-flash:
+    name: MiniMax M3.1 Flash
+    model_id: minimax/minimax-m3.1-flash
+    open_weights: true
+    host: minimax
+    price_in: 0.15
+    price_out: 0.60
+
+  minimax-m3:
+    name: MiniMax: MiniMax M3
+    model_id: minimax/minimax-m3
+    open_weights: true
+    host: minimax
+    price_in: 0.30
+    price_out: 1.20
+
+  gemma-4-26b-a4b-it:
+    name: Gemma 4 26B A4B
+    model_id: google/gemma-4-26b-a4b-it
+    open_weights: true
+    host: google-vertex/global
+    price_in: 0.15
+    price_out: 0.60
+
+  gemma-4-31b-it:
+    name: Gemma 4 31B
+    model_id: google/gemma-4-31b-it
+    open_weights: true
+    host: deepinfra/fp8
+    price_in: 0.20
+    price_out: 0.40
+
+  # ---------------- Proprietary (all via OpenRouter; served by external vendor or cloud partners) ----------------
+  gpt-6-luna-pro:
+    name: GPT-6 Luna Pro
+    model_id: openai/gpt-6-luna-pro
+    open_weights: false
+    host: azure
+    price_in: 0.10
+    price_out: 0.50
+
+  gpt-6-luna:
+    name: GPT-6 Luna
+    model_id: openai/gpt-6-luna
+    open_weights: false
+    host: azure
+    price_in: 0.10
+    price_out: 0.50
+
+  claude-sonnet-5.5:
+    name: Claude Sonnet 5.5
+    model_id: anthropic/claude-sonnet-5.5
+    open_weights: false
+    host: google-vertex/global
+    price_in: 2.00
+    price_out: 10.00
+
+  claude-haiku-5.5:
+    name: Claude Haiku 5.5
+    model_id: anthropic/claude-haiku-5.5
+    open_weights: false
+    host: google-vertex/global
+    price_in: 0.10
+    price_out: 0.50
