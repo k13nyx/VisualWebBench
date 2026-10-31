@@ -6,9 +6,9 @@
 # They are only a fallback: when OpenRouter returns the billed cost (it normally
 # does), run_api2.py records and uses that instead.
 
-defaults:
+env:
   base_url: https://openrouter.ai/api/v1
-  api_key_env: OPENROUTER_API_KEY
+  api_key: OPENROUTER_API_KEY
 
 models:
   # ---------------- Open-weight (all via OpenRouter) ----------------
@@ -77,7 +77,7 @@ models:
     price_out: 0.60
 
   minimax-m3:
-    name: MiniMax: MiniMax M3
+    name: MiniMax M3
     model_id: minimax/minimax-m3
     open_weights: true
     host: minimax
