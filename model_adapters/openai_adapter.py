@@ -21,13 +21,14 @@ class OpenAIAdapter(BaseAdapter):
     def generate(
         self,
         query: str,
-        image: Image,
+        image: Image.Image,
         task_type: str,
     ) -> str:
         image_data = io.BytesIO()
         image.save(image_data, format="PNG")
-        image = base64.b64encode(image_data.getvalue()).decode('utf-8')
+        image_b64 = base64.b64encode(image_data.getvalue()).decode('utf-8')
 
+        image_url = f"data:image/png;base64,{image_b64}"
         try:
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -36,18 +37,15 @@ class OpenAIAdapter(BaseAdapter):
                         "role": "user",
                         "content": [
                             {"type": "text", "text": query},
-                            {
-                                "type": "image_url",
-                                "image_url": f"data:image/jpeg;base64,{image}"
-                            },
+                            {"type": "image_url", "image_url": {"url": image_url}}
                         ],
                     }
                 ],
-                max_tokens=512,
+                max_tokens=2048,    # changed from 512
                 temperature=0.0
             )
 
-            outputs = response.choices[0].message.content
+            outputs = response.choices[0].message.content or ""
         except:
             outputs = ""
 

@@ -16,7 +16,7 @@ class BaseAdapter(ABC):
     def generate(
         self,
         query: str,
-        image: Image,
+        image: Image.Image,
         task_type: str,
     ) -> str:
         pass
@@ -24,7 +24,7 @@ class BaseAdapter(ABC):
     def __call__(
         self,
         query: str,
-        image: str,
+        image: Image.Image,
         task_type: str,
     ) -> str:
         return self.generate(query, image, task_type)
