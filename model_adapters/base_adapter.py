@@ -19,7 +19,7 @@ class BaseAdapter(ABC):
         query: str,
         image: Image.Image,
         task_type: str,
-    ) -> Union[str, tuple]:
+    ) -> Union[str, tuple[str, dict]]:
         pass
 
     def __call__(
@@ -27,5 +27,5 @@ class BaseAdapter(ABC):
         query: str,
         image: Image.Image,
         task_type: str,
-    ) -> Union[str, tuple]:
+    ) -> Union[str, tuple[str, dict]]:
         return self.generate(query, image, task_type)
