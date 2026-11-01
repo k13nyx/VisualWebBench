@@ -10,3 +10,7 @@ tiktoken
 openai
 anthropic
 google-generativeai
+datasets
+tqdm
+pandas
+openpyxl
